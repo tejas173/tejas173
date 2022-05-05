@@ -1,0 +1,97 @@
+#include <iostream>
+using namespace std;
+ 
+class Node{
+public:
+    
+    
+    Node* lchild;
+    int data;
+    Node*  rchild;
+    bool lthread;
+    bool rthread;
+    
+};
+ 
+class TBT{
+private:
+    Node* root;
+public:
+    TBT(){ root = nullptr; }
+    Node* getRoot(){ return root; }
+    void Insert(int key);
+    void Inorder(Node* p);
+};
+    void TBT::Insert(int key) {
+ 
+    Node* t = root;
+    Node* p;
+    Node* r;
+    
+ 
+    
+    if (root == nullptr){
+        p = new Node;
+        p->data = key;
+        p->lchild = nullptr;
+        p->rchild = nullptr;
+        root = p;
+        return;
+    }
+ 
+    while(t != nullptr){
+        r = t;
+        if (key < t->data){
+            t = t->lchild;
+        } else if (key > t->data){
+            t = t->rchild;
+        } else {
+            return;
+        }
+    }
+ 
+    
+    p = new Node;
+    p->data = key;
+    p->lchild = nullptr;
+    p->rchild = nullptr;
+ 
+    if (key < r->data){
+        r->lchild = p;
+    } else {
+        r->rchild = p;
+    }
+ 
+}
+ 
+void TBT::Inorder(Node* p) {
+    if (p->rchild = nullptr) 
+    position = p->rtag;
+    
+    else{
+          position = p->rchild;
+          while (position->lchild != nullptr)
+          position = position->ltag;
+          return position;
+
+    }
+
+}
+
+int main() {
+ 
+    TBT tbt;
+ 
+    // for insert
+    tbt.Insert(10);
+    tbt.Insert(5);
+    tbt.Insert(20);
+    tbt.Insert(8);
+    tbt.Insert(30);
+ 
+    // for inorder traversal
+    tbt.Inorder(bst.getRoot());
+    cout << endl;
+
+   return 0;
+}
